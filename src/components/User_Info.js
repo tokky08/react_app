@@ -6,7 +6,7 @@ class User_Info extends React.Component {
         <div className="bg-info">
             <div className="card-body text-white" id="user_info">
                 <div className="d-flex flex-row">
-                    <div className="">
+                    <div className="m-auto">
                         <p className=""><img className="img-thumbnail" src="../images/user_01.png" alt="Thumbnail image" width="80px"></img></p>
                         <div className="dropdown">
                             <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -26,7 +26,6 @@ class User_Info extends React.Component {
                 </div>
             </div>
         </div>
-        
     );
   }
 }

@@ -1,0 +1,8 @@
+@import "font-size";
+
+.post_dropdown{
+    button{
+        @include fz(10);
+    }
+}
+
