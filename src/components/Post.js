@@ -4,7 +4,7 @@ class Post extends React.Component {
   render() {
     return (
         <div className="bg-light">
-            <div className="card-body text-white" id="user_info">
+            <div className="card-body text-white" id="post">
                 <div className="d-flex flex-row">
                     <div className="m-auto">
                         <p className=""><img className="img-thumbnail" src="../images/user_01.png" alt="Thumbnail image" width="80px"></img></p>
@@ -19,7 +19,7 @@ class Post extends React.Component {
                         </div>
                     </div>
 
-                    <form className="form-group m-auto">
+                    <form className="form-group m-auto post-form">
                         <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         <p className="text-right mb-0 mt-3"><button className="btn btn-info" type="submit">Button</button></p>
                     </form>

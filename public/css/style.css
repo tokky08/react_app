@@ -3,8 +3,19 @@
   #user_info {
     width: 50%;
     margin: 0 auto; } }
+@media (min-width: 768px) {
+  #post {
+    width: 50%;
+    margin: 0 auto; }
+    #post .post-form {
+      width: 70%; } }
 .post_dropdown button {
   font-size: 10px;
   font-size: 1rem; }
+
+@media (min-width: 768px) {
+  #Introduction {
+    width: 50%;
+    margin: 0 auto; } }
 
 /*# sourceMappingURL=style.css.map */
