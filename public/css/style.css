@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css?family=Abel");
+@media (min-width: 768px) {
+  #user_info {
+    width: 50%;
+    margin: 0 auto; } }
+.post_dropdown button {
+  font-size: 10px;
+  font-size: 1rem; }
+
+/*# sourceMappingURL=style.css.map */

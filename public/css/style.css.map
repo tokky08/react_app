@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AACQ,2DAAmD;ACC3D,yBAAwB;EACpB,UAAU;IACN,KAAK,EAAE,GAAG;IACV,MAAM,EAAE,MAAM;ACFlB,qBAAM;ECFT,SAAS,EAAE,IAAU;EACrB,SAAS,EAAE,IAAmB",
+"sources": ["style.scss","_User_Info.scss","_Post.scss","_font-size.scss"],
+"names": [],
+"file": "style.css"
+}
