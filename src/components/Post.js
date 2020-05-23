@@ -1,11 +1,12 @@
 import React from 'react';
+import Main from './Main';
 
 class Post extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
           isSubmitted: false,
-          textarea:"",
+          postMessage:"",
           hasTextareaError: true
         };
     }
@@ -13,11 +14,11 @@ class Post extends React.Component {
         this.setState({isSubmitted: true});
     }
 
-    handleTextareaChange(event){
+    handleTextareaChange(event){        
         const inputValue = event.target.value;
         const noEnough = inputValue.length < 5;
         this.setState({
-            textarea: inputValue,
+            postMessage: inputValue,
             hasTextareaError: noEnough
         })
     }
@@ -29,6 +30,18 @@ class Post extends React.Component {
             button = (<button className="btn btn-info" id="button" type="submit" disabled>Button</button>);
         } else {
             button = (<button className="btn btn-info" id="button" type="submit">Button</button>);
+        }
+
+        let introduction
+
+        if (this.state.isSubmitted) {
+            introduction = (
+                <Main
+                    isSubmitted
+                    message="こんにちは"
+                    date="2020/05/23 23:05"
+                />
+            );
         }
 
         return (
@@ -50,13 +63,14 @@ class Post extends React.Component {
 
                         <form className="form-group m-auto post-form" onSubmit={() => {this.handleSubmit()}}>
                             <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"
-                                value={this.state.textarea}
+                                value={this.state.postMessage}
                                 onChange={(event) => { this.handleTextareaChange(event) }}>
                             </textarea>
                             <p className="text-right mb-0 mt-3">{button}</p>
                         </form>
                     </div>
                 </div>
+                {introduction}
             </div>
         );
     }
