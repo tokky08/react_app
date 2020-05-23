@@ -1,17 +1,22 @@
 import React from 'react';
-import Main from './Main';
+// import Main from './Main';
 
 class Post extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          isSubmitted: false,
-          postMessage:"",
-          hasTextareaError: true
+            // isSubmitted: false,
+            postMessage:"",
+            hasTextareaError: true,
+            todoList: []
         };
     }
     handleSubmit() {
-        this.setState({isSubmitted: true});
+        // this.setState({isSubmitted: true});
+        this.setState({
+            todoList: this.state.todoList.concat(this.state.postMessage),
+            postMessage: ""
+        })
     }
 
     handleTextareaChange(event){        
@@ -24,25 +29,29 @@ class Post extends React.Component {
     }
     
     render() {
+        const todoListNode = this.state.todoList.map((todo, idx) => {
+            return <li key={idx}>{todo}</li>
+        })
         let button
     
         if(this.state.hasTextareaError){
             button = (<button className="btn btn-info" id="button" type="submit" disabled>Button</button>);
         } else {
-            button = (<button className="btn btn-info" id="button" type="submit">Button</button>);
+            button = (<button onClick={() => this.handleSubmit()} className="btn btn-info" id="button" type="submit">Button</button>);
         }
 
-        let introduction
+        // let introduction
 
-        if (this.state.isSubmitted) {
-            introduction = (
-                <Main
-                    isSubmitted
-                    message="こんにちは"
-                    date="2020/05/23 23:05"
-                />
-            );
-        }
+        // if (this.state.isSubmitted) {
+        //     this.setState({todoList: this.state.todoList.concat(this.state.value)})
+        //     introduction = (
+        //         <Main
+        //             isSubmitted
+        //             message={this.state.postMessage}
+        //             date="2020/05/23 23:05"
+        //         />
+        //     );
+        // }
 
         return (
             <div className="bg-light">
@@ -61,16 +70,17 @@ class Post extends React.Component {
                             </div>
                         </div>
 
-                        <form className="form-group m-auto post-form" onSubmit={() => {this.handleSubmit()}}>
+                        <div className="form-group m-auto post-form" /*onSubmit={() => {this.handleSubmit()}}*/>
                             <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"
                                 value={this.state.postMessage}
                                 onChange={(event) => { this.handleTextareaChange(event) }}>
                             </textarea>
                             <p className="text-right mb-0 mt-3">{button}</p>
-                        </form>
+                        </div>
                     </div>
                 </div>
-                {introduction}
+                <ul>{todoListNode}</ul>
+                {/* {introduction} */}
             </div>
         );
     }
