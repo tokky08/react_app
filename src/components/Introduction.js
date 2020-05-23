@@ -11,7 +11,7 @@ class Introduction extends React.Component {
                     <i className="fas fa-hand-point-right fa-2x align-self-center mr-3 ml-3"></i>
                     <p className=""><img className="img-thumbnail" src="../images/user_02.png" alt="Thumbnail image" width="80px"></img></p>
                 </div>
-                {/* <p>{this.props.message}</p> */}
+                <p>{this.props.message}</p>
                 <div className="d-flex flex-row justify-content-between">
                     <div className="">
                         <i className="fas fa-sign-language fa-2x mr-3"></i>

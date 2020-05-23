@@ -1,21 +1,28 @@
 import React from 'react';
-// import Main from './Main';
+import Main from './Main';
 
 class Post extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            // isSubmitted: false,
+            isSubmitted: false,
             postMessage:"",
             hasTextareaError: true,
-            todoList: []
+            postedList: [],
+            dateList: [],
+            date: "",
+            postedList_map: {}
         };
     }
     handleSubmit() {
         // this.setState({isSubmitted: true});
         this.setState({
-            todoList: this.state.todoList.concat(this.state.postMessage),
-            postMessage: ""
+            isSubmitted: true,
+            postedList: this.state.postedList.concat(this.state.postMessage),
+            postMessage: "",
+            date: new Date(),
+            // dateList: this.state.date.concat(this.state.date),
+            // postedList_map: this.state.postedList_map.set(this.state.date, this.state.postMessage)
         })
     }
 
@@ -29,9 +36,37 @@ class Post extends React.Component {
     }
     
     render() {
-        const todoListNode = this.state.todoList.map((todo, idx) => {
-            return <li key={idx}>{todo}</li>
+        // const todoListNode = this.state.todoList.map((todo, idx) => {
+        //     return <li key={idx}>{todo}</li>
+        // })
+
+
+
+        const postedListNode = this.state.postedList.map((message, index) => {
+            return (
+                <Main
+                    isSubmitted = {this.state.isSubmitted}
+                    key = {index}
+                    message = {message}
+                    // date = {this.state.date}
+                />
+            )
         })
+
+        // const postedListNode = Object.keys(this.state.postedList_map).map((message, index) => {
+        //     return (
+        //         <Main
+        //             isSubmitted = {this.state.isSubmitted}
+        //             key = {index}
+        //             message = {message}
+        //             // date = {index}
+        //         />
+        //     )
+        // })
+
+
+
+
         let button
     
         if(this.state.hasTextareaError){
@@ -79,8 +114,7 @@ class Post extends React.Component {
                         </div>
                     </div>
                 </div>
-                <ul>{todoListNode}</ul>
-                {/* {introduction} */}
+                {postedListNode}
             </div>
         );
     }
