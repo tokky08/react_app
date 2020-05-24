@@ -9,7 +9,6 @@ class Main extends React.Component {
     if (this.props.isSubmitted) {
         introduction = (
             <Introduction
-                // key = {this.props.key}
                 message={this.props.message}
                 date={this.props.date}
             />

@@ -10,7 +10,7 @@ class App extends React.Component {
         
         let user_01 = {
             "name" : "user_01",
-            "img": "user_01.png",
+            "img": "../images/user_01.png",
             "clap": 100,
             "applauded": 0
         };
@@ -20,9 +20,9 @@ class App extends React.Component {
 
         let user_02 = {
             "name" : "user_02",
-            "img": "user_02.png",
-            "clap": 100,
-            "applauded": 0
+            "img": "../images/user_02.png",
+            "clap": 80,
+            "applauded": 20
         };
         localStorage.setItem( "user_02", JSON.stringify( user_02 ) );
         let user_02_info = JSON.parse(localStorage.getItem("user_02"));
@@ -30,9 +30,9 @@ class App extends React.Component {
 
         let user_03 = {
             "name" : "user_03",
-            "img": "user_03.png",
-            "clap": 100,
-            "applauded": 0
+            "img": "../images/user_03.png",
+            "clap": 40,
+            "applauded": 60
         };
         localStorage.setItem( "user_03", JSON.stringify( user_03 ) );
         let user_03_info  = JSON.parse( localStorage.getItem( "user_03" ) );
@@ -45,7 +45,11 @@ class App extends React.Component {
 
     return (
       <div>
-        <Header />
+        <Header
+            user_01={user_01_info}
+            user_02={user_02_info}
+            user_03={user_03_info}
+        />
         <Main />
       </div>
     );
