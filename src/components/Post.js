@@ -11,7 +11,7 @@ class Post extends React.Component {
             postMessage:"",
             postInfo: { postDate: "", postMessage: "" },
             postInfoList: [],
-            user: this.props.user_01
+            post_user: this.props.user_02
         };
     }
 
@@ -28,7 +28,6 @@ class Post extends React.Component {
             isSubmitted: true,
             postMessage: "",
             postInfoList: this.state.postInfoList.concat(postInfo),
-
         })
     }
 
@@ -43,20 +42,26 @@ class Post extends React.Component {
 
     selectUser(user_info) {
         this.setState({
-            user: user_info
+            post_user: user_info
         })
     }
 
     
     render() {
-        
+
         const introduction = this.state.postInfoList.map((postInfo, index) => {
             return (
                 <Main
-                    key = {index}
-                    isSubmitted = {this.state.isSubmitted}
-                    message = {postInfo.postMessage}
-                    date = {postInfo.postDate}
+                    key={index}
+                    isSubmitted={this.state.isSubmitted}
+                    message={postInfo.postMessage}
+                    date={postInfo.postDate}
+                    user_01={this.props.user_01}
+                    user_02={this.props.user_02}
+                    user_03={this.props.user_03}
+
+                    userInfo_user={this.props.userInfo_user}
+                    post_user={this.state.post_user}
                 />
             )
         })
@@ -76,10 +81,10 @@ class Post extends React.Component {
                 <div className="card-body text-white" id="post">
                     <div className="d-flex flex-row">
                         <div className="m-auto">
-                            <p className=""><img className="img-thumbnail" src={this.state.user.img} alt="Thumbnail image" width="80px"></img></p>
+                            <p className=""><img className="img-thumbnail" src={this.state.post_user.img} alt="Thumbnail image" width="80px"></img></p>
                             <div className="dropdown post_dropdown">
                                 <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {this.state.user.name}
+                                    {this.state.post_user.name}
                                 </button>
                                 <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <a onClick={() => this.selectUser(this.props.user_01)} className="dropdown-item">{this.props.user_01.name}</a>
@@ -107,7 +112,8 @@ class Post extends React.Component {
 Post.propTypes = {
     user_01: PropTypes.object,
     user_02: PropTypes.object,
-    user_03: PropTypes.object
+    user_03: PropTypes.object,
+    userInfo_user: PropTypes.object,
 };
 
 export default Post;

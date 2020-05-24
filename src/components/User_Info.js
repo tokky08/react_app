@@ -1,22 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Post from './Post';
+
 
 class User_Info extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: this.props.user_02
+            user: this.props.user_01
         };
     }
 
     selectUser(user_info) {
         this.setState({
             user: user_info
-        })
+        });
     }
 
 
     render() {
+    
+        const post = (
+            <Post
+                user_01={this.props.user_01}
+                user_02={this.props.user_02}
+                user_03={this.props.user_03}
+                userInfo_user={this.state.user}
+            />
+        );
         return (
             <div className="bg-info">
                 <div className="card-body text-white" id="user_info">
@@ -41,6 +52,7 @@ class User_Info extends React.Component {
                         </div>
                     </div>
                 </div>
+                {post}
             </div>
         );
     }
