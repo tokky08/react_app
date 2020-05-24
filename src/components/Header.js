@@ -12,7 +12,11 @@ class Header extends React.Component {
             user_02 = {this.props.user_02}    
             user_03 = {this.props.user_03}    
         />
-        <Post /> 
+        <Post
+            user_01 = {this.props.user_01}    
+            user_02 = {this.props.user_02}    
+            user_03 = {this.props.user_03}   
+        /> 
       </div>
     );
   }

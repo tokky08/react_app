@@ -1,5 +1,6 @@
 import React from 'react';
 import Main from './Main';
+import PropTypes from 'prop-types';
 
 class Post extends React.Component {
     constructor(props) {
@@ -10,6 +11,7 @@ class Post extends React.Component {
             postMessage:"",
             postInfo: { postDate: "", postMessage: "" },
             postInfoList: [],
+            user: this.props.user_01
         };
     }
 
@@ -36,6 +38,12 @@ class Post extends React.Component {
         this.setState({
             postMessage: inputValue,
             hasTextareaError: noEnough
+        })
+    }
+
+    selectUser(user_info) {
+        this.setState({
+            user: user_info
         })
     }
 
@@ -68,14 +76,15 @@ class Post extends React.Component {
                 <div className="card-body text-white" id="post">
                     <div className="d-flex flex-row">
                         <div className="m-auto">
-                            <p className=""><img className="img-thumbnail" src="../images/user_01.png" alt="Thumbnail image" width="80px"></img></p>
+                            <p className=""><img className="img-thumbnail" src={this.state.user.img} alt="Thumbnail image" width="80px"></img></p>
                             <div className="dropdown post_dropdown">
                                 <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Dropdown
+                                    {this.state.user.name}
                                 </button>
                                 <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <a className="dropdown-item" href="#!">Action</a>
-                                    <a className="dropdown-item" href="#!">Another action</a>
+                                    <a onClick={() => this.selectUser(this.props.user_01)} className="dropdown-item">{this.props.user_01.name}</a>
+                                    <a onClick={() => this.selectUser(this.props.user_02)} className="dropdown-item">{this.props.user_02.name}</a>
+                                    <a onClick={() => this.selectUser(this.props.user_03)} className="dropdown-item">{this.props.user_03.name}</a>
                                 </div>
                             </div>
                         </div>
@@ -94,5 +103,11 @@ class Post extends React.Component {
         );
     }
 }
+
+Post.propTypes = {
+    user_01: PropTypes.object,
+    user_02: PropTypes.object,
+    user_03: PropTypes.object
+};
 
 export default Post;
