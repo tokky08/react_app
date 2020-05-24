@@ -7,40 +7,27 @@ class Post extends React.Component {
         this.state = {
             isSubmitted: false,
             hasTextareaError: true,
-            now: new Date(),
-            year: "",
-            mon: "",
-            day: "",
-            hour: "",
-            min: "",
-            sec: "",
-            postDate: "",
             postMessage:"",
             postInfo: { postDate: "", postMessage: "" },
             postInfoList: [],
         };
     }
+
     handleSubmit() {
-        // let date_post = {date: this.state.date , postMessage: this.state.postMessage} 
+        const now = new Date();
+        const year = now.getFullYear();
+        const mon = now.getMonth() + 1;
+        const day = now.getDate();
+        const hour = now.getHours();
+        const min = now.getMinutes();
+        const postDate = year + "/" + mon + "/" + day + "　" + hour + ":" + min;
+        const postInfo = { postDate: postDate, postMessage: this.state.postMessage }; 
         this.setState({
             isSubmitted: true,
-            // postMessage: "",
-            
-            now: new Date(),
-            year: this.state.now.getFullYear(),
-            mon: this.state.now.getMonth()+1,
-            day: this.state.now.getDate(),
-            hour: this.state.now.getHours(),
-            min: this.state.now.getMinutes(),
-            sec: this.state.now.getSeconds(),
-            postDate: this.state.year + " / " + this.state.mon + " / " + this.state.day  + "  " + this.state.hour + ":" + this.state.min + ":" + this.state.sec,
-            postInfo: { postDate: this.state.postDate, postMessage: this.state.postMessage },
-            postInfoList: this.state.postInfoList.concat(this.state.postInfo),
+            postMessage: "",
+            postInfoList: this.state.postInfoList.concat(postInfo),
 
         })
-
-        console.log(this.state.postInfoList)
-
     }
 
     handleTextareaChange(event){        
@@ -58,8 +45,8 @@ class Post extends React.Component {
         const introduction = this.state.postInfoList.map((postInfo, index) => {
             return (
                 <Main
-                    isSubmitted = {this.state.isSubmitted}
                     key = {index}
+                    isSubmitted = {this.state.isSubmitted}
                     message = {postInfo.postMessage}
                     date = {postInfo.postDate}
                 />

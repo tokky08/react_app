@@ -27,7 +27,6 @@ class Introduction extends React.Component {
 }
 
 Introduction.propTypes = {
-    isSubmitted: PropTypes.bool,
     message: PropTypes.string,
     date:PropTypes.string
 };

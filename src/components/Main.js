@@ -9,7 +9,7 @@ class Main extends React.Component {
     if (this.props.isSubmitted) {
         introduction = (
             <Introduction
-                key = {this.props.key}
+                // key = {this.props.key}
                 message={this.props.message}
                 date={this.props.date}
             />
@@ -24,7 +24,6 @@ class Main extends React.Component {
 }
 
 Main.propTypes = {
-    key: PropTypes.int,
     isSubmitted: PropTypes.bool,
     message: PropTypes.string,
     date:PropTypes.string
