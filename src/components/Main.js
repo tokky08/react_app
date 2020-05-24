@@ -11,7 +11,7 @@ class Main extends React.Component {
             <Introduction
                 key = {this.props.key}
                 message={this.props.message}
-                // date={this.props.date}
+                date={this.props.date}
             />
         );
     }

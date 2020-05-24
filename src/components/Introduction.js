@@ -17,7 +17,7 @@ class Introduction extends React.Component {
                         <i className="fas fa-sign-language fa-2x mr-3"></i>
                         <span>0</span>
                     </div>
-                    {/* <p>{this.props.date}</p> */}
+                    <p>{this.props.date}</p>
                 </div>
                 <hr className="m-0"/>
             </div>

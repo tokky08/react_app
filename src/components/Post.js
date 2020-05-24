@@ -6,24 +6,41 @@ class Post extends React.Component {
         super(props);
         this.state = {
             isSubmitted: false,
-            postMessage:"",
             hasTextareaError: true,
-            postedList: [],
-            dateList: [],
-            date: "",
-            postedList_map: {}
+            now: new Date(),
+            year: "",
+            mon: "",
+            day: "",
+            hour: "",
+            min: "",
+            sec: "",
+            postDate: "",
+            postMessage:"",
+            postInfo: { postDate: "", postMessage: "" },
+            postInfoList: [],
         };
     }
     handleSubmit() {
-        // this.setState({isSubmitted: true});
+        // let date_post = {date: this.state.date , postMessage: this.state.postMessage} 
         this.setState({
             isSubmitted: true,
-            postedList: this.state.postedList.concat(this.state.postMessage),
-            postMessage: "",
-            date: new Date(),
-            // dateList: this.state.date.concat(this.state.date),
-            // postedList_map: this.state.postedList_map.set(this.state.date, this.state.postMessage)
+            // postMessage: "",
+            
+            now: new Date(),
+            year: this.state.now.getFullYear(),
+            mon: this.state.now.getMonth()+1,
+            day: this.state.now.getDate(),
+            hour: this.state.now.getHours(),
+            min: this.state.now.getMinutes(),
+            sec: this.state.now.getSeconds(),
+            postDate: this.state.year + " / " + this.state.mon + " / " + this.state.day  + "  " + this.state.hour + ":" + this.state.min + ":" + this.state.sec,
+            postInfo: { postDate: this.state.postDate, postMessage: this.state.postMessage },
+            postInfoList: this.state.postInfoList.concat(this.state.postInfo),
+
         })
+
+        console.log(this.state.postInfoList)
+
     }
 
     handleTextareaChange(event){        
@@ -34,37 +51,20 @@ class Post extends React.Component {
             hasTextareaError: noEnough
         })
     }
+
     
     render() {
-        // const todoListNode = this.state.todoList.map((todo, idx) => {
-        //     return <li key={idx}>{todo}</li>
-        // })
-
-
-
-        const postedListNode = this.state.postedList.map((message, index) => {
+        
+        const introduction = this.state.postInfoList.map((postInfo, index) => {
             return (
                 <Main
                     isSubmitted = {this.state.isSubmitted}
                     key = {index}
-                    message = {message}
-                    // date = {this.state.date}
+                    message = {postInfo.postMessage}
+                    date = {postInfo.postDate}
                 />
             )
         })
-
-        // const postedListNode = Object.keys(this.state.postedList_map).map((message, index) => {
-        //     return (
-        //         <Main
-        //             isSubmitted = {this.state.isSubmitted}
-        //             key = {index}
-        //             message = {message}
-        //             // date = {index}
-        //         />
-        //     )
-        // })
-
-
 
 
         let button
@@ -75,18 +75,6 @@ class Post extends React.Component {
             button = (<button onClick={() => this.handleSubmit()} className="btn btn-info" id="button" type="submit">Button</button>);
         }
 
-        // let introduction
-
-        // if (this.state.isSubmitted) {
-        //     this.setState({todoList: this.state.todoList.concat(this.state.value)})
-        //     introduction = (
-        //         <Main
-        //             isSubmitted
-        //             message={this.state.postMessage}
-        //             date="2020/05/23 23:05"
-        //         />
-        //     );
-        // }
 
         return (
             <div className="bg-light">
@@ -114,7 +102,7 @@ class Post extends React.Component {
                         </div>
                     </div>
                 </div>
-                {postedListNode}
+                {introduction}
             </div>
         );
     }
