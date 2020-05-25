@@ -6,8 +6,63 @@ class Introduction extends React.Component {
         super(props);
         this.state = {
             userInfo_user: this.props.userInfo_user,
-            post_user: this.props.post_user
+            post_user: this.props.post_user,
+            count: 0,
+            limit: 0
         };
+    }
+
+    handleClick() {
+        
+        // 拍手した人が紹介した人・紹介された人でなければ
+        if (!(this.props.userInfo_user.name == this.state.userInfo_user.name || this.props.userInfo_user.name == this.state.post_user.name)) {
+
+            // 1ユーザは一つの投稿につき最大15回まで行える
+            if (this.state.limit >= 15) {
+                return
+            }
+
+            this.setState({
+                count: this.state.count + 1,
+                limit: this.state.limit + 1
+            });
+            
+
+            // 紹介した人の拍手された数が+1される
+            if (this.state.userInfo_user.name == this.props.user_01.name) {
+                this.props.user_01.applauded += 1;
+            }
+            if (this.state.userInfo_user.name == this.props.user_02.name) {
+                this.props.user_02.applauded += 1;
+            }
+            if (this.state.userInfo_user.name == this.props.user_03.name) {
+                this.props.user_03.applauded += 1;
+            }
+
+            // 紹介された人の拍手された数が+1される
+            if (this.state.post_user.name == this.props.user_01.name) {
+                this.props.user_01.applauded += 1;
+            }
+            if (this.state.post_user.name == this.props.user_02.name) {
+                this.props.user_02.applauded += 1;
+            }
+            if (this.state.post_user.name == this.props.user_03.name) {
+                this.props.user_03.applauded += 1;
+            }
+
+            // 拍手した人の拍手できる数が-2される
+            if (this.props.userInfo_user.name == this.props.user_01.name) {
+                this.props.user_01.clap -= 2;
+            }
+            if (this.props.userInfo_user.name == this.props.user_02.name) {
+                this.props.user_02.clap -= 2;
+            }
+            if (this.props.userInfo_user.name == this.props.user_03.name) {
+                this.props.user_03.clap -= 2;
+            }
+
+        }
+
     }
 
     render() {
@@ -22,8 +77,8 @@ class Introduction extends React.Component {
                     <p>{this.props.message}</p>
                     <div className="d-flex flex-row justify-content-between">
                         <div className="">
-                            <i className="fas fa-sign-language fa-2x mr-3"></i>
-                            <span>0</span>
+                            <i className="fas fa-sign-language fa-2x mr-3" onClick = {()=>{this.handleClick()}}></i>
+                            <span>{this.state.count}</span>
                         </div>
                         <p>{this.props.date}</p>
                     </div>
