@@ -24,10 +24,22 @@ class Introduction extends React.Component {
         // 拍手した人が紹介した人・紹介された人でなければ
         if (!(this.props.userInfo_user.name == this.state.userInfo_user.name || this.props.userInfo_user.name == this.state.post_user.name)) {
 
-            // 1ユーザは一つの投稿につき最大15回まで行える
-            if (this.state.limit >= 15) {
-                return
-            }
+            // // 1ユーザは一つの投稿につき最大15回まで行える
+            // if (this.state.user_01_clap > 15) {
+            //     return
+            // }
+            // if (this.state.user_02_clap > 15) {
+            //     return
+            // }
+            // if (this.state.user_03_clap > 15) {
+            //     return
+            // }
+            // if (this.state.user_04_clap > 15) {
+            //     return
+            // }
+            // if (this.state.user_05_clap > 15) {
+            //     return
+            // }
 
             this.setState({
                 count: this.state.count + 1,
@@ -75,50 +87,85 @@ class Introduction extends React.Component {
             if (this.props.userInfo_user.name == this.props.user_01.name) {
                 this.props.user_01.clap -= 2;
 
+                for (let i = 0; i < this.state.applauseListList.length; i++) {
+                    if (this.state.applauseListList[i].name == this.props.user_01.name) {
+                        this.setState({
+                            applauseListList: this.state.applauseListList.splice(i, 1)
+                        });
+                    }
+                }
+
                 applauseList = { name: this.props.userInfo_user.name, count: this.state.user_01_clap }; 
                 this.setState({
                     applauseListList: this.state.applauseListList.concat(applauseList),
-                    // applauseListList: applauseList,
                     user_01_clap: this.state.user_01_clap + 1
                 })
             }
             if (this.props.userInfo_user.name == this.props.user_02.name) {
                 this.props.user_02.clap -= 2;
 
+                for (let i = 0; i < this.state.applauseListList.length; i++) {
+                    if (this.state.applauseListList[i].name == this.props.user_02.name) {
+                        this.setState({
+                            applauseListList: this.state.applauseListList.splice(i, 1)
+                        });
+                    }
+                }
+
                 applauseList = { name: this.props.userInfo_user.name, count: this.state.user_02_clap }; 
                 this.setState({
                     applauseListList: this.state.applauseListList.concat(applauseList),
-                    // applauseListList: applauseList,
                     user_02_clap: this.state.user_02_clap + 1
                 })
             }
             if (this.props.userInfo_user.name == this.props.user_03.name) {
                 this.props.user_03.clap -= 2;
 
+                for (let i = 0; i < this.state.applauseListList.length; i++) {
+                    if (this.state.applauseListList[i].name == this.props.user_03.name) {
+                        this.setState({
+                            applauseListList: this.state.applauseListList.splice(i, 1)
+                        });
+                    }
+                }
+
                 applauseList = { name: this.props.userInfo_user.name, count: this.state.user_03_clap }; 
                 this.setState({
                     applauseListList: this.state.applauseListList.concat(applauseList),
-                    // applauseListList: applauseList,
                     user_03_clap: this.state.user_03_clap + 1
                 })
             }
             if (this.props.userInfo_user.name == this.props.user_04.name) {
                 this.props.user_04.clap -= 2;
 
+                for (let i = 0; i < this.state.applauseListList.length; i++) {
+                    if (this.state.applauseListList[i].name == this.props.user_04.name) {
+                        this.setState({
+                            applauseListList: this.state.applauseListList.splice(i, 1)
+                        });
+                    }
+                }
+
                 applauseList = { name: this.props.userInfo_user.name, count: this.state.user_04_clap }; 
                 this.setState({
                     applauseListList: this.state.applauseListList.concat(applauseList),
-                    // applauseListList: applauseList,
                     user_04_clap: this.state.user_04_clap + 1
                 })
             }
             if (this.props.userInfo_user.name == this.props.user_05.name) {
                 this.props.user_05.clap -= 2;
 
+                for (let i = 0; i < this.state.applauseListList.length; i++) {
+                    if (this.state.applauseListList[i].name == this.props.user_05.name) {
+                        this.setState({
+                            applauseListList: this.state.applauseListList.splice(i, 1)
+                        });
+                    }
+                }
+
                 applauseList = { name: this.props.userInfo_user.name, count: this.state.user_05_clap }; 
                 this.setState({
                     applauseListList: this.state.applauseListList.concat(applauseList),
-                    // applauseListList: applauseList,
                     user_05_clap: this.state.user_05_clap + 1
                 })
             }
@@ -141,25 +188,46 @@ class Introduction extends React.Component {
 
     render() {
 
-        console.log(this.state.applauseList)
+        // 1ユーザは一つの投稿につき最大15回まで行える
+        // if (this.state.user_01_clap > 15) {
+        //     return
+        // }
+        // if (this.state.user_02_clap > 15) {
+        //     return
+        // }
+        // if (this.state.user_03_clap > 15) {
+        //     return
+        // }
+        // if (this.state.user_04_clap > 15) {
+        //     return
+        // }
+        // if (this.state.user_05_clap > 15) {
+        //     return
+        // }
+
+        
+
+        // 降順にソート
+        this.state.applauseListList.sort(
+            function(a,b){
+              return (a.count < b.count ? 1 : -1);
+            }
+        );
 
 
-        const tooltip_li = this.state.applauseListList.map((applauseList, index) => {
+        const clapList_li = this.state.applauseListList.map((applauseList, index) => {
             return (
                 <li className="list-group-item" key={index}>{applauseList.name} : {applauseList.count}</li>
             )
         })
 
 
-        let tooltip;
+        let clapList;
         if (this.state.hovered) {
-            tooltip = (
+            clapList = (
                 <div className="card" onMouseEnter={() => this.onMouseEnter()} onMouseLeave={() => this.onMouseLeave()}>
                     <ul className="list-group list-group-flush">
-                        {tooltip_li}
-                        {/* <li className="list-group-item">{this.props.userInfo_user.name}</li> */}
-                        <li className="list-group-item">Dapibus ac facilisis in</li>
-                        <li className="list-group-item">Vestibulum at eros</li>
+                        {clapList_li}
                     </ul>
                 </div>
             );
@@ -181,7 +249,7 @@ class Introduction extends React.Component {
                         </div>
                         <p>{this.props.date}</p>
                     </div>
-                    {tooltip}
+                    {clapList}
                     <hr className="m-0"/>
                 </div>
             </div>
