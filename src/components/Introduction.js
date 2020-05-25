@@ -9,7 +9,9 @@ class Introduction extends React.Component {
             post_user: this.props.post_user,
             count: 0,
             limit: 0,
-            hovered: false
+            hovered: false,
+            // applauseList: { name: "", count: 0 },
+            applauseListList: []
         };
     }
 
@@ -54,6 +56,10 @@ class Introduction extends React.Component {
             // 拍手した人の拍手できる数が-2される
             if (this.props.userInfo_user.name == this.props.user_01.name) {
                 this.props.user_01.clap -= 2;
+                // const applauseList = { name: this.props.userInfo_user.name, count: };
+                // this.setState({
+                //     applauseListList: this.state.applauseListList.concat(this.state.applauseList),
+                // });
             }
             if (this.props.userInfo_user.name == this.props.user_02.name) {
                 this.props.user_02.clap -= 2;
@@ -67,14 +73,12 @@ class Introduction extends React.Component {
     }
 
     onMouseEnter() {
-        console.log("hover");
         this.setState({
             hovered: true
         });
     }
 
     onMouseLeave() {
-        console.log("hover_false");
         this.setState({
             hovered: false
         });
@@ -86,9 +90,9 @@ class Introduction extends React.Component {
             tooltip = (
                 <div className="card" onMouseEnter={() => this.onMouseEnter()} onMouseLeave={() => this.onMouseLeave()}>
                     <ul className="list-group list-group-flush">
-                    <li className="list-group-item">Cras justo odio</li>
-                    <li className="list-group-item">Dapibus ac facilisis in</li>
-                    <li className="list-group-item">Vestibulum at eros</li>
+                        <li className="list-group-item">{this.props.userInfo_user.name}</li>
+                        <li className="list-group-item">Dapibus ac facilisis in</li>
+                        <li className="list-group-item">Vestibulum at eros</li>
                     </ul>
                 </div>
             );
