@@ -25,6 +25,8 @@ class User_Info extends React.Component {
                 user_01={this.props.user_01}
                 user_02={this.props.user_02}
                 user_03={this.props.user_03}
+                user_04={this.props.user_04}
+                user_05={this.props.user_05}
                 userInfo_user={this.state.user}
             />
         );
@@ -42,6 +44,8 @@ class User_Info extends React.Component {
                                     <a onClick={() => this.selectUser(this.props.user_01)} className="dropdown-item">{this.props.user_01.name}</a>
                                     <a onClick={() => this.selectUser(this.props.user_02)} className="dropdown-item">{this.props.user_02.name}</a>
                                     <a onClick={() => this.selectUser(this.props.user_03)} className="dropdown-item">{this.props.user_03.name}</a>
+                                    <a onClick={() => this.selectUser(this.props.user_04)} className="dropdown-item">{this.props.user_04.name}</a>
+                                    <a onClick={() => this.selectUser(this.props.user_05)} className="dropdown-item">{this.props.user_05.name}</a>
                                 </div>
                             </div>
                         </div>
@@ -61,7 +65,9 @@ class User_Info extends React.Component {
 User_Info.propTypes = {
     user_01: PropTypes.object,
     user_02: PropTypes.object,
-    user_03: PropTypes.object
+    user_03: PropTypes.object,
+    user_04: PropTypes.object,
+    user_05: PropTypes.object,
 };
 
 export default User_Info;
