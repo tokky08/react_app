@@ -17,5 +17,14 @@
   #Introduction {
     width: 50%;
     margin: 0 auto; } }
+#Introduction {
+  position: relative; }
+  #Introduction .countHover {
+    cursor: pointer; }
+  #Introduction .card {
+    cursor: pointer;
+    position: absolute;
+    width: fit-content;
+    z-index: 5; }
 
 /*# sourceMappingURL=style.css.map */

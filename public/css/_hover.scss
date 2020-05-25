@@ -1,0 +1,13 @@
+
+#Introduction{
+    position: relative;
+    .countHover{
+        cursor : pointer;
+    }
+    .card{
+        cursor : pointer;
+        position: absolute;
+        width: fit-content;
+        z-index: 5;
+    }
+}

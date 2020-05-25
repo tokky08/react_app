@@ -8,7 +8,8 @@ class Introduction extends React.Component {
             userInfo_user: this.props.userInfo_user,
             post_user: this.props.post_user,
             count: 0,
-            limit: 0
+            limit: 0,
+            hovered: false
         };
     }
 
@@ -65,7 +66,34 @@ class Introduction extends React.Component {
 
     }
 
+    onMouseEnter() {
+        console.log("hover");
+        this.setState({
+            hovered: true
+        });
+    }
+
+    onMouseLeave() {
+        console.log("hover_false");
+        this.setState({
+            hovered: false
+        });
+    }
+
     render() {
+        let tooltip;
+        if (this.state.hovered) {
+            tooltip = (
+                <div className="card" onMouseEnter={() => this.onMouseEnter()} onMouseLeave={() => this.onMouseLeave()}>
+                    <ul className="list-group list-group-flush">
+                    <li className="list-group-item">Cras justo odio</li>
+                    <li className="list-group-item">Dapibus ac facilisis in</li>
+                    <li className="list-group-item">Vestibulum at eros</li>
+                    </ul>
+                </div>
+            );
+        }
+
         return (
             <div className="bg-white">
                 <div className="card-body " id="Introduction">
@@ -78,10 +106,11 @@ class Introduction extends React.Component {
                     <div className="d-flex flex-row justify-content-between">
                         <div className="">
                             <i className="fas fa-sign-language fa-2x mr-3" onClick = {()=>{this.handleClick()}}></i>
-                            <span>{this.state.count}</span>
+                            <span className="countHover p-2" onMouseEnter={() => this.onMouseEnter()} onMouseLeave={() => this.onMouseLeave()}>{this.state.count}</span>
                         </div>
                         <p>{this.props.date}</p>
                     </div>
+                    {tooltip}
                     <hr className="m-0"/>
                 </div>
             </div>
