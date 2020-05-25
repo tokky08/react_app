@@ -22,7 +22,8 @@ class App extends React.Component {
             "name" : "user_02",
             "img": "../images/user_02.png",
             "clap": 100,
-            "applauded": 0
+            "applauded": 0,
+            "limit": false
         };
         localStorage.setItem( "user_02", JSON.stringify( user_02 ) );
         let user_02_info = JSON.parse(localStorage.getItem("user_02"));
@@ -32,7 +33,8 @@ class App extends React.Component {
             "name" : "user_03",
             "img": "../images/user_03.png",
             "clap": 100,
-            "applauded": 0
+            "applauded": 0,
+            "limit": false
         };
         localStorage.setItem( "user_03", JSON.stringify( user_03 ) );
         let user_03_info  = JSON.parse( localStorage.getItem( "user_03" ) );
@@ -42,7 +44,8 @@ class App extends React.Component {
             "name" : "user_04",
             "img": "../images/user_04.png",
             "clap": 100,
-            "applauded": 0
+            "applauded": 0,
+            "limit": false
         };
         localStorage.setItem( "user_04", JSON.stringify( user_04 ) );
         let user_04_info = JSON.parse(localStorage.getItem("user_04"));
@@ -52,7 +55,8 @@ class App extends React.Component {
             "name" : "user_05",
             "img": "../images/user_05.png",
             "clap": 100,
-            "applauded": 0
+            "applauded": 0,
+            "limit": false
         };
         localStorage.setItem( "user_05", JSON.stringify( user_05 ) );
         let user_05_info = JSON.parse(localStorage.getItem("user_05"));
