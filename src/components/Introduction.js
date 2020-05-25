@@ -15,6 +15,7 @@ class Introduction extends React.Component {
         
         // 拍手した人が紹介した人・紹介された人でなければ
         if (!(this.props.userInfo_user.name == this.state.userInfo_user.name || this.props.userInfo_user.name == this.state.post_user.name)) {
+
             this.setState({
                 count: this.state.count + 1,
             });
@@ -40,6 +41,18 @@ class Introduction extends React.Component {
             if (this.state.post_user.name == this.props.user_03.name) {
                 this.props.user_03.applauded += 1;
             }
+
+            // 拍手した人の拍手できる数が-2される
+            if (this.props.userInfo_user.name == this.props.user_01.name) {
+                this.props.user_01.clap -= 2;
+            }
+            if (this.props.userInfo_user.name == this.props.user_02.name) {
+                this.props.user_02.clap -= 2;
+            }
+            if (this.props.userInfo_user.name == this.props.user_03.name) {
+                this.props.user_03.clap -= 2;
+            }
+            
         }
 
     }
