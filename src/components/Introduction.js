@@ -7,7 +7,8 @@ class Introduction extends React.Component {
         this.state = {
             userInfo_user: this.props.userInfo_user,
             post_user: this.props.post_user,
-            count: 0
+            count: 0,
+            limit: 0
         };
     }
 
@@ -16,9 +17,16 @@ class Introduction extends React.Component {
         // 拍手した人が紹介した人・紹介された人でなければ
         if (!(this.props.userInfo_user.name == this.state.userInfo_user.name || this.props.userInfo_user.name == this.state.post_user.name)) {
 
+            // 1ユーザは一つの投稿につき最大15回まで行える
+            if (this.state.limit >= 15) {
+                return
+            }
+
             this.setState({
                 count: this.state.count + 1,
+                limit: this.state.limit + 1
             });
+            
 
             // 紹介した人の拍手された数が+1される
             if (this.state.userInfo_user.name == this.props.user_01.name) {
@@ -52,7 +60,7 @@ class Introduction extends React.Component {
             if (this.props.userInfo_user.name == this.props.user_03.name) {
                 this.props.user_03.clap -= 2;
             }
-            
+
         }
 
     }
