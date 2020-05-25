@@ -10,8 +10,12 @@ class Introduction extends React.Component {
             count: 0,
             limit: 0,
             hovered: false,
-            // applauseList: { name: "", count: 0 },
-            applauseListList: []
+            applauseListList: [],
+            user_01_clap: 1,
+            user_02_clap: 1,
+            user_03_clap: 1,
+            user_04_clap: 1,
+            user_05_clap: 1,
         };
     }
 
@@ -41,6 +45,12 @@ class Introduction extends React.Component {
             if (this.state.userInfo_user.name == this.props.user_03.name) {
                 this.props.user_03.applauded += 1;
             }
+            if (this.state.userInfo_user.name == this.props.user_04.name) {
+                this.props.user_04.applauded += 1;
+            }
+            if (this.state.userInfo_user.name == this.props.user_05.name) {
+                this.props.user_05.applauded += 1;
+            }
 
             // 紹介された人の拍手された数が+1される
             if (this.state.post_user.name == this.props.user_01.name) {
@@ -52,20 +62,65 @@ class Introduction extends React.Component {
             if (this.state.post_user.name == this.props.user_03.name) {
                 this.props.user_03.applauded += 1;
             }
+            if (this.state.post_user.name == this.props.user_04.name) {
+                this.props.user_04.applauded += 1;
+            }
+            if (this.state.post_user.name == this.props.user_05.name) {
+                this.props.user_05.applauded += 1;
+            }
+
+            let applauseList
 
             // 拍手した人の拍手できる数が-2される
             if (this.props.userInfo_user.name == this.props.user_01.name) {
                 this.props.user_01.clap -= 2;
-                // const applauseList = { name: this.props.userInfo_user.name, count: };
-                // this.setState({
-                //     applauseListList: this.state.applauseListList.concat(this.state.applauseList),
-                // });
+
+                applauseList = { name: this.props.userInfo_user.name, count: this.state.user_01_clap }; 
+                this.setState({
+                    applauseListList: this.state.applauseListList.concat(applauseList),
+                    // applauseListList: applauseList,
+                    user_01_clap: this.state.user_01_clap + 1
+                })
             }
             if (this.props.userInfo_user.name == this.props.user_02.name) {
                 this.props.user_02.clap -= 2;
+
+                applauseList = { name: this.props.userInfo_user.name, count: this.state.user_02_clap }; 
+                this.setState({
+                    applauseListList: this.state.applauseListList.concat(applauseList),
+                    // applauseListList: applauseList,
+                    user_02_clap: this.state.user_02_clap + 1
+                })
             }
             if (this.props.userInfo_user.name == this.props.user_03.name) {
                 this.props.user_03.clap -= 2;
+
+                applauseList = { name: this.props.userInfo_user.name, count: this.state.user_03_clap }; 
+                this.setState({
+                    applauseListList: this.state.applauseListList.concat(applauseList),
+                    // applauseListList: applauseList,
+                    user_03_clap: this.state.user_03_clap + 1
+                })
+            }
+            if (this.props.userInfo_user.name == this.props.user_04.name) {
+                this.props.user_04.clap -= 2;
+
+                applauseList = { name: this.props.userInfo_user.name, count: this.state.user_04_clap }; 
+                this.setState({
+                    applauseListList: this.state.applauseListList.concat(applauseList),
+                    // applauseListList: applauseList,
+                    user_04_clap: this.state.user_04_clap + 1
+                })
+            }
+            if (this.props.userInfo_user.name == this.props.user_05.name) {
+                this.props.user_05.clap -= 2;
+
+                applauseList = { name: this.props.userInfo_user.name, count: this.state.user_05_clap }; 
+                this.setState({
+                    applauseListList: this.state.applauseListList.concat(applauseList),
+                    // applauseListList: applauseList,
+                    user_05_clap: this.state.user_05_clap + 1
+                })
             }
 
         }
@@ -85,12 +140,24 @@ class Introduction extends React.Component {
     }
 
     render() {
+
+        console.log(this.state.applauseList)
+
+
+        const tooltip_li = this.state.applauseListList.map((applauseList, index) => {
+            return (
+                <li className="list-group-item" key={index}>{applauseList.name} : {applauseList.count}</li>
+            )
+        })
+
+
         let tooltip;
         if (this.state.hovered) {
             tooltip = (
                 <div className="card" onMouseEnter={() => this.onMouseEnter()} onMouseLeave={() => this.onMouseLeave()}>
                     <ul className="list-group list-group-flush">
-                        <li className="list-group-item">{this.props.userInfo_user.name}</li>
+                        {tooltip_li}
+                        {/* <li className="list-group-item">{this.props.userInfo_user.name}</li> */}
                         <li className="list-group-item">Dapibus ac facilisis in</li>
                         <li className="list-group-item">Vestibulum at eros</li>
                     </ul>
@@ -128,6 +195,8 @@ Introduction.propTypes = {
     user_01: PropTypes.object,
     user_02: PropTypes.object,
     user_03: PropTypes.object,
+    user_04: PropTypes.object,
+    user_05: PropTypes.object,
     userInfo_user: PropTypes.object,
     post_user: PropTypes.object,
 };

@@ -13,7 +13,9 @@ class Main extends React.Component {
                 date={this.props.date}
                 user_01 = {this.props.user_01}    
                 user_02 = {this.props.user_02}    
-                user_03={this.props.user_03}
+                user_03 = {this.props.user_03}
+                user_04 = {this.props.user_04}
+                user_05 = {this.props.user_05}
                 
                 userInfo_user={this.props.userInfo_user}
                 post_user={this.props.post_user}
@@ -35,6 +37,8 @@ Main.propTypes = {
     user_01: PropTypes.object,
     user_02: PropTypes.object,
     user_03: PropTypes.object,
+    user_04: PropTypes.object,
+    user_05: PropTypes.object,
     userInfo_user: PropTypes.object,
     post_user: PropTypes.object,
 };
