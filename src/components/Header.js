@@ -1,6 +1,5 @@
 import React from 'react';
 import User_Info from './User_Info';
-// import Post from './Post';
 import PropTypes from 'prop-types';
 
 class Header extends React.Component {
