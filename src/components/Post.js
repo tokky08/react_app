@@ -9,19 +9,20 @@ class Post extends React.Component {
             isSubmitted: false,
             hasTextareaError: true,
             postMessage:"",
-            // postInfo: { postDate: "", postMessage: "" },
             postInfoList: [],
             post_user: this.props.user_02
         };
     }
 
+  
+
     handleSubmit() {
         const now = new Date();
         const year = now.getFullYear();
-        const mon = now.getMonth() + 1;
-        const day = now.getDate();
-        const hour = now.getHours();
-        const min = now.getMinutes();
+        const mon = ("0" + (now.getMonth() + 1)).slice(-2);
+        const day = ("0" + now.getDate()).slice(-2);
+        const hour = ("0" + now.getHours()).slice(-2);
+        const min = ("0" + now.getMinutes()).slice(-2);
         const postDate = year + "/" + mon + "/" + day + "　" + hour + ":" + min;
         const postInfo = { postDate: postDate, postMessage: this.state.postMessage }; 
         this.setState({
@@ -30,6 +31,7 @@ class Post extends React.Component {
             postInfoList: this.state.postInfoList.concat(postInfo),
         })
     }
+
 
     handleTextareaChange(event){        
         const inputValue = event.target.value;
@@ -61,7 +63,6 @@ class Post extends React.Component {
                     user_03={this.props.user_03}
                     user_04={this.props.user_04}
                     user_05={this.props.user_05}
-
                     userInfo_user={this.props.userInfo_user}
                     post_user={this.state.post_user}
                 />
@@ -98,7 +99,7 @@ class Post extends React.Component {
                             </div>
                         </div>
 
-                        <div className="form-group m-auto post-form" /*onSubmit={() => {this.handleSubmit()}}*/>
+                        <div className="form-group m-auto post-form">
                             <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"
                                 value={this.state.postMessage}
                                 onChange={(event) => { this.handleTextareaChange(event) }}>
