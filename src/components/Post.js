@@ -9,7 +9,8 @@ class Post extends React.Component {
             isSubmitted: false,
             hasTextareaError: true,
             postMessage:"",
-            postInfoList: [],
+            // postInfoList: [],
+            postInfoList: JSON.parse(localStorage.getItem('postInfoList')) || [],
             post_user: this.props.user_02
         };
     }
@@ -24,11 +25,25 @@ class Post extends React.Component {
         const hour = ("0" + now.getHours()).slice(-2);
         const min = ("0" + now.getMinutes()).slice(-2);
         const postDate = year + "/" + mon + "/" + day + "　" + hour + ":" + min;
-        const postInfo = { postDate: postDate, postMessage: this.state.postMessage }; 
+        // const postInfo = { postDate: postDate, postMessage: this.state.postMessage }; 
+        const postInfo = {
+            postDate: postDate,
+            isSubmitted: true,
+            postMessage: this.state.postMessage,
+            post_user: this.state.post_user,
+            userInfo_user: this.props.userInfo_user,
+        };
+        // this.setState({
+        //     isSubmitted: true,
+        //     postMessage: "",
+        //     postInfoList: this.state.postInfoList.concat(postInfo),
+        // })
         this.setState({
             isSubmitted: true,
             postMessage: "",
-            postInfoList: this.state.postInfoList.concat(postInfo),
+            postInfoList: [...this.state.postInfoList, postInfo],
+        }, () => {
+            localStorage.setItem('postInfoList', JSON.stringify(this.state.postInfoList))
         })
     }
 
@@ -55,7 +70,8 @@ class Post extends React.Component {
             return (
                 <Main
                     key={index}
-                    isSubmitted={this.state.isSubmitted}
+                    // isSubmitted={this.state.isSubmitted}
+                    isSubmitted={postInfo.isSubmitted}
                     message={postInfo.postMessage}
                     date={postInfo.postDate}
                     user_01={this.props.user_01}
@@ -63,8 +79,10 @@ class Post extends React.Component {
                     user_03={this.props.user_03}
                     user_04={this.props.user_04}
                     user_05={this.props.user_05}
-                    userInfo_user={this.props.userInfo_user}
-                    post_user={this.state.post_user}
+                    // userInfo_user={this.props.userInfo_user}
+                    userInfo_user={postInfo.userInfo_user}
+                    // post_user={this.state.post_user}
+                    post_user={postInfo.post_user}
                 />
             )
         })
@@ -124,3 +142,4 @@ Post.propTypes = {
 };
 
 export default Post;
+
