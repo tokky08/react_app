@@ -9,6 +9,8 @@ class Main extends React.Component {
     if (this.props.isSubmitted) {
         introduction = (
             <Introduction
+                id={this.props.id}
+                count={this.props.count}
                 message={this.props.message}
                 date={this.props.date}
                 user_01 = {this.props.user_01}    
@@ -17,6 +19,9 @@ class Main extends React.Component {
                 user_04 = {this.props.user_04}
                 user_05 = {this.props.user_05}
                 
+                userInfo_user_now={this.props.userInfo_user_now}
+                post_user_now={this.props.post_user_now}
+
                 userInfo_user={this.props.userInfo_user}
                 post_user={this.props.post_user}
             />
@@ -31,6 +36,8 @@ class Main extends React.Component {
 }
 
 Main.propTypes = {
+    id: PropTypes.number,
+    count: PropTypes.number,
     isSubmitted: PropTypes.bool,
     message: PropTypes.string,
     date: PropTypes.string,
@@ -41,6 +48,8 @@ Main.propTypes = {
     user_05: PropTypes.object,
     userInfo_user: PropTypes.object,
     post_user: PropTypes.object,
+    userInfo_user_now: PropTypes.object,
+    post_user_now: PropTypes.object,
 };
 
 export default Main;

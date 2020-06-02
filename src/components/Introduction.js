@@ -7,7 +7,8 @@ class Introduction extends React.Component {
         this.state = {
             userInfo_user: this.props.userInfo_user,
             post_user: this.props.post_user,
-            count: 0,
+            count: this.props.count,
+            postInfoList: JSON.parse(localStorage.getItem('postInfoList')),
             hovered: false,
             applauseListList: [],
             user_01_clap: 1,
@@ -19,56 +20,101 @@ class Introduction extends React.Component {
     }
 
     handleClick() {
+     
+        let user = JSON.parse(localStorage.getItem(this.props.userInfo_user_now.name))
 
-        if (!this.props.userInfo_user.limit) {
-        
+        if (!user.limit) {
+
             // 拍手した人が紹介した人・紹介された人でなければ
-            if (!(this.props.userInfo_user.name == this.state.userInfo_user.name || this.props.userInfo_user.name == this.state.post_user.name)) {
+            if (!(this.props.userInfo_user_now.name == this.state.userInfo_user.name || this.props.userInfo_user_now.name == this.state.post_user.name)) {
+                
 
-                this.setState({
-                    count: this.state.count + 1,
-                });
-            
+                for (let i = 0; i < JSON.parse(localStorage.getItem('postInfoList')).length; i++){
+
+                    if (JSON.parse(localStorage.getItem('postInfoList'))[i].id == this.props.id) {
+                        let count = JSON.parse(localStorage.getItem('postInfoList'))
+                        count[i]["count"] += 1;
+                        localStorage.setItem("postInfoList", JSON.stringify(count))
+                        this.setState({
+                            count: count[i]["count"]
+                        });
+                    }
+                    
+                }
+
 
                 // 紹介した人の拍手された数が+1される
                 if (this.state.userInfo_user.name == this.props.user_01.name) {
-                    this.props.user_01.applauded += 1;
+                    
+                    let applauded = JSON.parse(localStorage.getItem("user_01"))
+                    applauded["applauded"] += 1;
+                    localStorage.setItem("user_01", JSON.stringify(applauded))
                 }
                 if (this.state.userInfo_user.name == this.props.user_02.name) {
-                    this.props.user_02.applauded += 1;
+                    
+                    let applauded = JSON.parse(localStorage.getItem("user_02"))
+                    applauded["applauded"] += 1;
+                    localStorage.setItem("user_02", JSON.stringify(applauded))
                 }
                 if (this.state.userInfo_user.name == this.props.user_03.name) {
-                    this.props.user_03.applauded += 1;
+                    
+                    let applauded = JSON.parse(localStorage.getItem("user_03"))
+                    applauded["applauded"] += 1;
+                    localStorage.setItem("user_03", JSON.stringify(applauded))
                 }
                 if (this.state.userInfo_user.name == this.props.user_04.name) {
-                    this.props.user_04.applauded += 1;
+                    
+                    let applauded = JSON.parse(localStorage.getItem("user_04"))
+                    applauded["applauded"] += 1;
+                    localStorage.setItem("user_04", JSON.stringify(applauded))
                 }
                 if (this.state.userInfo_user.name == this.props.user_05.name) {
-                    this.props.user_05.applauded += 1;
+                    
+                    let applauded = JSON.parse(localStorage.getItem("user_05"))
+                    applauded["applauded"] += 1;
+                    localStorage.setItem("user_05", JSON.stringify(applauded))
                 }
 
                 // 紹介された人の拍手された数が+1される
                 if (this.state.post_user.name == this.props.user_01.name) {
-                    this.props.user_01.applauded += 1;
+                    
+                    let applauded = JSON.parse(localStorage.getItem("user_01"))
+                    applauded["applauded"] += 1;
+                    localStorage.setItem("user_05", JSON.stringify(applauded))
                 }
                 if (this.state.post_user.name == this.props.user_02.name) {
-                    this.props.user_02.applauded += 1;
+                    
+                    let applauded = JSON.parse(localStorage.getItem("user_02"))
+                    applauded["applauded"] += 1;
+                    localStorage.setItem("user_02", JSON.stringify(applauded))
                 }
                 if (this.state.post_user.name == this.props.user_03.name) {
-                    this.props.user_03.applauded += 1;
+                    
+                    let applauded = JSON.parse(localStorage.getItem("user_03"))
+                    applauded["applauded"] += 1;
+                    localStorage.setItem("user_03", JSON.stringify(applauded))
                 }
                 if (this.state.post_user.name == this.props.user_04.name) {
-                    this.props.user_04.applauded += 1;
+                    
+                    let applauded = JSON.parse(localStorage.getItem("user_04"))
+                    applauded["applauded"] += 1;
+                    localStorage.setItem("user_04", JSON.stringify(applauded))
                 }
                 if (this.state.post_user.name == this.props.user_05.name) {
-                    this.props.user_05.applauded += 1;
+                    
+                    let applauded = JSON.parse(localStorage.getItem("user_05"))
+                    applauded["applauded"] += 1;
+                    localStorage.setItem("user_05", JSON.stringify(applauded))
                 }
 
                 let applauseList
 
                 // 拍手した人の拍手できる数が-2される
-                if (this.props.userInfo_user.name == this.props.user_01.name) {
-                    this.props.user_01.clap -= 2;
+                if (this.props.userInfo_user_now.name == this.props.user_01.name) {
+                    
+                    let clap = JSON.parse(localStorage.getItem("user_01"))
+                    clap["clap"] -= 2;
+                    localStorage.setItem("user_01", JSON.stringify(clap))
 
                     for (let i = 0; i < this.state.applauseListList.length; i++) {
                         if (this.state.applauseListList[i].name == this.props.user_01.name) {
@@ -78,14 +124,17 @@ class Introduction extends React.Component {
                         }
                     }
 
-                    applauseList = { name: this.props.userInfo_user.name, count: this.state.user_01_clap };
+                    applauseList = { name: this.props.userInfo_user_now.name, count: this.state.user_01_clap };
                     this.setState({
                         applauseListList: this.state.applauseListList.concat(applauseList),
                         user_01_clap: this.state.user_01_clap + 1
                     })
                 }
-                if (this.props.userInfo_user.name == this.props.user_02.name) {
-                    this.props.user_02.clap -= 2;
+                if (this.props.userInfo_user_now.name == this.props.user_02.name) {
+                    
+                    let clap = JSON.parse(localStorage.getItem("user_02"))
+                    clap["clap"] -= 2;
+                    localStorage.setItem("user_02", JSON.stringify(clap))
 
                     for (let i = 0; i < this.state.applauseListList.length; i++) {
                         if (this.state.applauseListList[i].name == this.props.user_02.name) {
@@ -95,14 +144,17 @@ class Introduction extends React.Component {
                         }
                     }
 
-                    applauseList = { name: this.props.userInfo_user.name, count: this.state.user_02_clap };
+                    applauseList = { name: this.props.userInfo_user_now.name, count: this.state.user_02_clap };
                     this.setState({
                         applauseListList: this.state.applauseListList.concat(applauseList),
                         user_02_clap: this.state.user_02_clap + 1
                     })
                 }
-                if (this.props.userInfo_user.name == this.props.user_03.name) {
-                    this.props.user_03.clap -= 2;
+                if (this.props.userInfo_user_now.name == this.props.user_03.name) {
+                    
+                    let clap = JSON.parse(localStorage.getItem("user_03"))
+                    clap["clap"] -= 2;
+                    localStorage.setItem("user_03", JSON.stringify(clap))
 
                     for (let i = 0; i < this.state.applauseListList.length; i++) {
                         if (this.state.applauseListList[i].name == this.props.user_03.name) {
@@ -112,14 +164,17 @@ class Introduction extends React.Component {
                         }
                     }
 
-                    applauseList = { name: this.props.userInfo_user.name, count: this.state.user_03_clap };
+                    applauseList = { name: this.props.userInfo_user_now.name, count: this.state.user_03_clap };
                     this.setState({
                         applauseListList: this.state.applauseListList.concat(applauseList),
                         user_03_clap: this.state.user_03_clap + 1
                     })
                 }
-                if (this.props.userInfo_user.name == this.props.user_04.name) {
-                    this.props.user_04.clap -= 2;
+                if (this.props.userInfo_user_now.name == this.props.user_04.name) {
+                    
+                    let clap = JSON.parse(localStorage.getItem("user_04"))
+                    clap["clap"] -= 2;
+                    localStorage.setItem("user_04", JSON.stringify(clap))
 
                     for (let i = 0; i < this.state.applauseListList.length; i++) {
                         if (this.state.applauseListList[i].name == this.props.user_04.name) {
@@ -129,14 +184,17 @@ class Introduction extends React.Component {
                         }
                     }
 
-                    applauseList = { name: this.props.userInfo_user.name, count: this.state.user_04_clap };
+                    applauseList = { name: this.props.userInfo_user_now.name, count: this.state.user_04_clap };
                     this.setState({
                         applauseListList: this.state.applauseListList.concat(applauseList),
                         user_04_clap: this.state.user_04_clap + 1
                     })
                 }
-                if (this.props.userInfo_user.name == this.props.user_05.name) {
-                    this.props.user_05.clap -= 2;
+                if (this.props.userInfo_user_now.name == this.props.user_05.name) {
+
+                    let clap = JSON.parse(localStorage.getItem("user_05"))
+                    clap["clap"] -= 2;
+                    localStorage.setItem("user_05", JSON.stringify(clap))
 
                     for (let i = 0; i < this.state.applauseListList.length; i++) {
                         if (this.state.applauseListList[i].name == this.props.user_05.name) {
@@ -146,7 +204,7 @@ class Introduction extends React.Component {
                         }
                     }
 
-                    applauseList = { name: this.props.userInfo_user.name, count: this.state.user_05_clap };
+                    applauseList = { name: this.props.userInfo_user_now.name, count: this.state.user_05_clap };
                     this.setState({
                         applauseListList: this.state.applauseListList.concat(applauseList),
                         user_05_clap: this.state.user_05_clap + 1
@@ -176,34 +234,54 @@ class Introduction extends React.Component {
         // 1ユーザは一つの投稿につき最大15回まで行える
 
         if (this.state.user_01_clap > 15) {
-            this.props.user_01.limit = true;
+            let limit = JSON.parse(localStorage.getItem("user_01"))
+            limit["limit"] = true;
+            localStorage.setItem("user_01", JSON.stringify(limit))
         } else {
-            this.props.user_01.limit = false;
+            let limit = JSON.parse(localStorage.getItem("user_01"))
+            limit["limit"] = false;
+            localStorage.setItem("user_01", JSON.stringify(limit))
         }
 
         if (this.state.user_02_clap > 15) {
-            this.props.user_02.limit = true;
+            let limit = JSON.parse(localStorage.getItem("user_02"))
+            limit["limit"] = true;
+            localStorage.setItem("user_02", JSON.stringify(limit))
         }else {
-            this.props.user_02.limit = false;
+            let limit = JSON.parse(localStorage.getItem("user_02"))
+            limit["limit"] = false;
+            localStorage.setItem("user_02", JSON.stringify(limit))
         }
 
         if (this.state.user_03_clap > 15) {
-            this.props.user_03.limit = true;
+            let limit = JSON.parse(localStorage.getItem("user_03"))
+            limit["limit"] = true;
+            localStorage.setItem("user_03", JSON.stringify(limit))
         }
         else {
-            this.props.user_03.limit = false;
+            let limit = JSON.parse(localStorage.getItem("user_03"))
+            limit["limit"] = false;
+            localStorage.setItem("user_03", JSON.stringify(limit))
         }
 
         if (this.state.user_04_clap > 15) {
-            this.props.user_04.limit = true;
+            let limit = JSON.parse(localStorage.getItem("user_04"))
+            limit["limit"] = true;
+            localStorage.setItem("user_04", JSON.stringify(limit))
         }else {
-            this.props.user_04.limit = false;
+            let limit = JSON.parse(localStorage.getItem("user_04"))
+            limit["limit"] =false;
+            localStorage.setItem("user_04", JSON.stringify(limit))
         }
 
         if (this.state.user_05_clap > 15) {
-            this.props.user_05.limit = true;
+            let limit = JSON.parse(localStorage.getItem("user_05"))
+            limit["limit"] = true;
+            localStorage.setItem("user_05", JSON.stringify(limit))
         }else {
-            this.props.user_05.limit = false;
+            let limit = JSON.parse(localStorage.getItem("user_05"))
+            limit["limit"] = false;
+            localStorage.setItem("user_05", JSON.stringify(limit))
         }
 
         
@@ -259,6 +337,8 @@ class Introduction extends React.Component {
 }
 
 Introduction.propTypes = {
+    id: PropTypes.number,
+    count: PropTypes.number,
     message: PropTypes.string,
     date: PropTypes.string,
     user_01: PropTypes.object,
@@ -268,6 +348,8 @@ Introduction.propTypes = {
     user_05: PropTypes.object,
     userInfo_user: PropTypes.object,
     post_user: PropTypes.object,
+    userInfo_user_now: PropTypes.object,
+    post_user_now: PropTypes.object,
 };
 
 export default Introduction;
