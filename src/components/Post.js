@@ -9,7 +9,6 @@ class Post extends React.Component {
             isSubmitted: false,
             hasTextareaError: true,
             postMessage:"",
-            // postInfoList: [],
             postInfoList: JSON.parse(localStorage.getItem('postInfoList')) || [],
             post_user: this.props.user_02
         };
@@ -25,7 +24,6 @@ class Post extends React.Component {
         const hour = ("0" + now.getHours()).slice(-2);
         const min = ("0" + now.getMinutes()).slice(-2);
         const postDate = year + "/" + mon + "/" + day + "　" + hour + ":" + min;
-        // const postInfo = { postDate: postDate, postMessage: this.state.postMessage }; 
         const postInfo = {
             id: Math.random(),
             count: 0,
@@ -35,11 +33,6 @@ class Post extends React.Component {
             post_user: this.state.post_user,
             userInfo_user: this.props.userInfo_user,
         };
-        // this.setState({
-        //     isSubmitted: true,
-        //     postMessage: "",
-        //     postInfoList: this.state.postInfoList.concat(postInfo),
-        // })
         this.setState({
             isSubmitted: true,
             postMessage: "",
@@ -74,7 +67,6 @@ class Post extends React.Component {
                     key={index}
                     id={postInfo.id}
                     count={postInfo.count}
-                    // isSubmitted={this.state.isSubmitted}
                     isSubmitted={postInfo.isSubmitted}
                     message={postInfo.postMessage}
                     date={postInfo.postDate}

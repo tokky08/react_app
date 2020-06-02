@@ -20,9 +20,6 @@ class Introduction extends React.Component {
     }
 
     handleClick() {
-        
-
-        console.log(this.props.id)
      
         let user = JSON.parse(localStorage.getItem(this.props.userInfo_user_now.name))
 
@@ -38,7 +35,6 @@ class Introduction extends React.Component {
                         let count = JSON.parse(localStorage.getItem('postInfoList'))
                         count[i]["count"] += 1;
                         localStorage.setItem("postInfoList", JSON.stringify(count))
-                        console.log(count[i])
                         this.setState({
                             count: count[i]["count"]
                         });
