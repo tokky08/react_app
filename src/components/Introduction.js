@@ -20,19 +20,10 @@ class Introduction extends React.Component {
     }
 
     handleClick() {
+     
+        let user = JSON.parse(localStorage.getItem(this.props.userInfo_user_now
+            .name))
 
-        console.log(this.props.userInfo_user_now)
-        console.log(this.props.post_user_now)
-
-        // console.log(JSON.parse(localStorage.getItem('postInfoList')))      
-        let user = JSON.parse(localStorage.getItem(this.props.userInfo_user.name))
-
-        // let postData = JSON.parse(localStorage.getItem("postInfoList"))
-        // postData["count"] = 1;
-        // localStorage.setItem("postInfoList", JSON.stringify(postData))
-        // console.log(JSON.parse(localStorage.getItem('postInfoList')))    
-
-        // console.log(user.limit)
 
         if (!user.limit) {
             // !(this.props.userInfo_user.name == this.state.userInfo_user.name || this.props.userInfo_user.name == this.state.post_user.name)
@@ -132,7 +123,7 @@ class Introduction extends React.Component {
                 let applauseList
 
                 // 拍手した人の拍手できる数が-2される
-                if (this.props.userInfo_user.name == this.props.user_01.name) {
+                if (this.props.userInfo_user_now.name == this.props.user_01.name) {
                     // this.props.user_01.clap -= 2;
 
                     let clap = JSON.parse(localStorage.getItem("user_01"))
@@ -147,13 +138,13 @@ class Introduction extends React.Component {
                         }
                     }
 
-                    applauseList = { name: this.props.userInfo_user.name, count: this.state.user_01_clap };
+                    applauseList = { name: this.props.userInfo_user_now.name, count: this.state.user_01_clap };
                     this.setState({
                         applauseListList: this.state.applauseListList.concat(applauseList),
                         user_01_clap: this.state.user_01_clap + 1
                     })
                 }
-                if (this.props.userInfo_user.name == this.props.user_02.name) {
+                if (this.props.userInfo_user_now.name == this.props.user_02.name) {
                     // this.props.user_02.clap -= 2;
 
                     let clap = JSON.parse(localStorage.getItem("user_02"))
@@ -168,13 +159,13 @@ class Introduction extends React.Component {
                         }
                     }
 
-                    applauseList = { name: this.props.userInfo_user.name, count: this.state.user_02_clap };
+                    applauseList = { name: this.props.userInfo_user_now.name, count: this.state.user_02_clap };
                     this.setState({
                         applauseListList: this.state.applauseListList.concat(applauseList),
                         user_02_clap: this.state.user_02_clap + 1
                     })
                 }
-                if (this.props.userInfo_user.name == this.props.user_03.name) {
+                if (this.props.userInfo_user_now.name == this.props.user_03.name) {
                     // this.props.user_03.clap -= 2;
 
                     let clap = JSON.parse(localStorage.getItem("user_03"))
@@ -189,13 +180,13 @@ class Introduction extends React.Component {
                         }
                     }
 
-                    applauseList = { name: this.props.userInfo_user.name, count: this.state.user_03_clap };
+                    applauseList = { name: this.props.userInfo_user_now.name, count: this.state.user_03_clap };
                     this.setState({
                         applauseListList: this.state.applauseListList.concat(applauseList),
                         user_03_clap: this.state.user_03_clap + 1
                     })
                 }
-                if (this.props.userInfo_user.name == this.props.user_04.name) {
+                if (this.props.userInfo_user_now.name == this.props.user_04.name) {
                     // this.props.user_04.clap -= 2;
 
                     let clap = JSON.parse(localStorage.getItem("user_04"))
@@ -210,13 +201,13 @@ class Introduction extends React.Component {
                         }
                     }
 
-                    applauseList = { name: this.props.userInfo_user.name, count: this.state.user_04_clap };
+                    applauseList = { name: this.props.userInfo_user_now.name, count: this.state.user_04_clap };
                     this.setState({
                         applauseListList: this.state.applauseListList.concat(applauseList),
                         user_04_clap: this.state.user_04_clap + 1
                     })
                 }
-                if (this.props.userInfo_user.name == this.props.user_05.name) {
+                if (this.props.userInfo_user_now.name == this.props.user_05.name) {
                     // this.props.user_05.clap -= 2;
 
                     let clap = JSON.parse(localStorage.getItem("user_05"))
@@ -231,7 +222,7 @@ class Introduction extends React.Component {
                         }
                     }
 
-                    applauseList = { name: this.props.userInfo_user.name, count: this.state.user_05_clap };
+                    applauseList = { name: this.props.userInfo_user_now.name, count: this.state.user_05_clap };
                     this.setState({
                         applauseListList: this.state.applauseListList.concat(applauseList),
                         user_05_clap: this.state.user_05_clap + 1
