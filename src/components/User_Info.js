@@ -7,15 +7,12 @@ class User_Info extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: JSON.parse(localStorage.getItem("user_01"))
-            // user: this.props.user_01
-
+            user: this.props.user_01
         };
     }
 
     selectUser(user_info) {
         this.setState({
-            // user: JSON.parse(localStorage.getItem(user_info.name))
             user: user_info
         });
     }
