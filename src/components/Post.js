@@ -79,9 +79,9 @@ class Post extends React.Component {
                     user_03={this.props.user_03}
                     user_04={this.props.user_04}
                     user_05={this.props.user_05}
-                    // userInfo_user={this.props.userInfo_user}
+                    userInfo_user_now={this.props.userInfo_user}
                     userInfo_user={postInfo.userInfo_user}
-                    // post_user={this.state.post_user}
+                    post_user_now={this.state.post_user}
                     post_user={postInfo.post_user}
                 />
             )
