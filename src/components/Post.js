@@ -27,6 +27,8 @@ class Post extends React.Component {
         const postDate = year + "/" + mon + "/" + day + "　" + hour + ":" + min;
         // const postInfo = { postDate: postDate, postMessage: this.state.postMessage }; 
         const postInfo = {
+            id: Math.random(),
+            count: 0,
             postDate: postDate,
             isSubmitted: true,
             postMessage: this.state.postMessage,
@@ -70,6 +72,8 @@ class Post extends React.Component {
             return (
                 <Main
                     key={index}
+                    id={postInfo.id}
+                    count={postInfo.count}
                     // isSubmitted={this.state.isSubmitted}
                     isSubmitted={postInfo.isSubmitted}
                     message={postInfo.postMessage}

@@ -12,7 +12,8 @@ class App extends React.Component {
             "name" : "user_01",
             "img": "../images/user_01.png",
             "clap": 100,
-            "applauded": 0
+            "applauded": 0,
+            "limit": false
         };
         localStorage.setItem( "user_01", JSON.stringify( user_01 ) );
         let user_01_info = JSON.parse(localStorage.getItem("user_01"));
