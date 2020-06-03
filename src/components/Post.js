@@ -32,6 +32,12 @@ class Post extends React.Component {
             postMessage: this.state.postMessage,
             post_user: this.state.post_user,
             userInfo_user: this.props.userInfo_user,
+            
+            user_01_clap: 0,
+            user_02_clap: 0,
+            user_03_clap: 0,
+            user_04_clap: 0,
+            user_05_clap: 0,
         };
         this.setState({
             isSubmitted: true,

@@ -10,20 +10,39 @@ class Introduction extends React.Component {
             count: this.props.count,
             postInfoList: JSON.parse(localStorage.getItem('postInfoList')),
             hovered: false,
-            applauseListList: [],
-            user_01_clap: 1,
-            user_02_clap: 1,
-            user_03_clap: 1,
-            user_04_clap: 1,
-            user_05_clap: 1,
         };
     }
 
     handleClick() {
-     
-        let user = JSON.parse(localStorage.getItem(this.props.userInfo_user_now.name))
 
-        if (!user.limit) {
+        let user_limit = 0
+        if (JSON.parse(localStorage.getItem('postInfoList')) != null) {
+            for (let i = 0; i < JSON.parse(localStorage.getItem('postInfoList')).length; i++){
+
+                if (JSON.parse(localStorage.getItem('postInfoList'))[i].id == this.props.id) {
+
+                    
+                    let limit = JSON.parse(localStorage.getItem("applauseListList_new"))[i]
+
+                    for (let j = 0; j < limit.length; j++){
+                        if (limit[j].name == this.props.userInfo_user_now.name) {
+
+                            user_limit = limit[j].count
+                    
+                        }
+                    }
+                    
+                }
+                
+            }
+        }
+
+     
+        // let user = JSON.parse(localStorage.getItem(this.props.userInfo_user_now.name))
+
+
+
+        if (user_limit < 15) {
 
             // 拍手した人が紹介した人・紹介された人でなければ
             if (!(this.props.userInfo_user_now.name == this.state.userInfo_user.name || this.props.userInfo_user_now.name == this.state.post_user.name)) {
@@ -107,7 +126,6 @@ class Introduction extends React.Component {
                     localStorage.setItem("user_05", JSON.stringify(applauded))
                 }
 
-                let applauseList
 
                 // 拍手した人の拍手できる数が-2される
                 if (this.props.userInfo_user_now.name == this.props.user_01.name) {
@@ -116,99 +134,97 @@ class Introduction extends React.Component {
                     clap["clap"] -= 2;
                     localStorage.setItem("user_01", JSON.stringify(clap))
 
-                    for (let i = 0; i < this.state.applauseListList.length; i++) {
-                        if (this.state.applauseListList[i].name == this.props.user_01.name) {
-                            this.setState({
-                                applauseListList: this.state.applauseListList.splice(i, 1)
-                            });
+
+                    for (let i = 0; i < JSON.parse(localStorage.getItem('postInfoList')).length; i++){
+
+                        if (JSON.parse(localStorage.getItem('postInfoList'))[i].id == this.props.id) {
+                            let clap = JSON.parse(localStorage.getItem('postInfoList'))
+                            clap[i]["user_01_clap"] += 1;
+                            localStorage.setItem("postInfoList", JSON.stringify(clap))
                         }
+                        
                     }
 
-                    applauseList = { name: this.props.userInfo_user_now.name, count: this.state.user_01_clap };
-                    this.setState({
-                        applauseListList: this.state.applauseListList.concat(applauseList),
-                        user_01_clap: this.state.user_01_clap + 1
-                    })
                 }
+
                 if (this.props.userInfo_user_now.name == this.props.user_02.name) {
                     
                     let clap = JSON.parse(localStorage.getItem("user_02"))
                     clap["clap"] -= 2;
                     localStorage.setItem("user_02", JSON.stringify(clap))
 
-                    for (let i = 0; i < this.state.applauseListList.length; i++) {
-                        if (this.state.applauseListList[i].name == this.props.user_02.name) {
-                            this.setState({
-                                applauseListList: this.state.applauseListList.splice(i, 1)
-                            });
+
+                    for (let i = 0; i < JSON.parse(localStorage.getItem('postInfoList')).length; i++){
+
+                        if (JSON.parse(localStorage.getItem('postInfoList'))[i].id == this.props.id) {
+                            let clap = JSON.parse(localStorage.getItem('postInfoList'))
+                            clap[i]["user_02_clap"] += 1;
+                            localStorage.setItem("postInfoList", JSON.stringify(clap))
                         }
+                        
                     }
 
-                    applauseList = { name: this.props.userInfo_user_now.name, count: this.state.user_02_clap };
-                    this.setState({
-                        applauseListList: this.state.applauseListList.concat(applauseList),
-                        user_02_clap: this.state.user_02_clap + 1
-                    })
                 }
+
                 if (this.props.userInfo_user_now.name == this.props.user_03.name) {
                     
                     let clap = JSON.parse(localStorage.getItem("user_03"))
                     clap["clap"] -= 2;
                     localStorage.setItem("user_03", JSON.stringify(clap))
 
-                    for (let i = 0; i < this.state.applauseListList.length; i++) {
-                        if (this.state.applauseListList[i].name == this.props.user_03.name) {
-                            this.setState({
-                                applauseListList: this.state.applauseListList.splice(i, 1)
-                            });
+
+                    for (let i = 0; i < JSON.parse(localStorage.getItem('postInfoList')).length; i++){
+
+                        if (JSON.parse(localStorage.getItem('postInfoList'))[i].id == this.props.id) {
+                            let clap = JSON.parse(localStorage.getItem('postInfoList'))
+                            clap[i]["user_03_clap"] += 1;
+                            localStorage.setItem("postInfoList", JSON.stringify(clap))
                         }
+                        
                     }
 
-                    applauseList = { name: this.props.userInfo_user_now.name, count: this.state.user_03_clap };
-                    this.setState({
-                        applauseListList: this.state.applauseListList.concat(applauseList),
-                        user_03_clap: this.state.user_03_clap + 1
-                    })
+
                 }
+
                 if (this.props.userInfo_user_now.name == this.props.user_04.name) {
                     
                     let clap = JSON.parse(localStorage.getItem("user_04"))
                     clap["clap"] -= 2;
                     localStorage.setItem("user_04", JSON.stringify(clap))
 
-                    for (let i = 0; i < this.state.applauseListList.length; i++) {
-                        if (this.state.applauseListList[i].name == this.props.user_04.name) {
-                            this.setState({
-                                applauseListList: this.state.applauseListList.splice(i, 1)
-                            });
+
+
+                    for (let i = 0; i < JSON.parse(localStorage.getItem('postInfoList')).length; i++){
+
+                        if (JSON.parse(localStorage.getItem('postInfoList'))[i].id == this.props.id) {
+                            let clap = JSON.parse(localStorage.getItem('postInfoList'))
+                            clap[i]["user_04_clap"] += 1;
+                            localStorage.setItem("postInfoList", JSON.stringify(clap))
                         }
+                        
                     }
 
-                    applauseList = { name: this.props.userInfo_user_now.name, count: this.state.user_04_clap };
-                    this.setState({
-                        applauseListList: this.state.applauseListList.concat(applauseList),
-                        user_04_clap: this.state.user_04_clap + 1
-                    })
+
                 }
+
                 if (this.props.userInfo_user_now.name == this.props.user_05.name) {
 
                     let clap = JSON.parse(localStorage.getItem("user_05"))
                     clap["clap"] -= 2;
                     localStorage.setItem("user_05", JSON.stringify(clap))
 
-                    for (let i = 0; i < this.state.applauseListList.length; i++) {
-                        if (this.state.applauseListList[i].name == this.props.user_05.name) {
-                            this.setState({
-                                applauseListList: this.state.applauseListList.splice(i, 1)
-                            });
+
+
+                    for (let i = 0; i < JSON.parse(localStorage.getItem('postInfoList')).length; i++){
+
+                        if (JSON.parse(localStorage.getItem('postInfoList'))[i].id == this.props.id) {
+                            let clap = JSON.parse(localStorage.getItem('postInfoList'))
+                            clap[i]["user_05_clap"] += 1;
+                            localStorage.setItem("postInfoList", JSON.stringify(clap))
                         }
+                        
                     }
 
-                    applauseList = { name: this.props.userInfo_user_now.name, count: this.state.user_05_clap };
-                    this.setState({
-                        applauseListList: this.state.applauseListList.concat(applauseList),
-                        user_05_clap: this.state.user_05_clap + 1
-                    })
                 }
 
             }
@@ -230,6 +246,35 @@ class Introduction extends React.Component {
     }
 
     render() {
+
+
+        if (JSON.parse(localStorage.getItem('postInfoList')) != null) {
+
+            for (let i = 0; i < JSON.parse(localStorage.getItem('postInfoList')).length; i++) {
+
+                let postInfo = JSON.parse(localStorage.getItem('postInfoList'))
+
+                let postInfoJson = [
+                    { name: "user_01", count: postInfo[i]["user_01_clap"] },
+                    { name: "user_02", count: postInfo[i]["user_02_clap"] },
+                    { name: "user_03", count: postInfo[i]["user_03_clap"] },
+                    { name: "user_04", count: postInfo[i]["user_04_clap"] },
+                    { name: "user_05", count: postInfo[i]["user_05_clap"] },
+                ]
+
+                if (JSON.parse(localStorage.getItem('applauseListList_new')) == null) {
+                    localStorage.setItem("applauseListList_new", JSON.stringify([]))
+                }
+
+
+                let data = JSON.parse(localStorage.getItem('applauseListList_new'))  
+                data[i] = postInfoJson
+                localStorage.setItem("applauseListList_new", JSON.stringify(data))
+            
+            }
+        }        
+
+
 
         // 1ユーザは一つの投稿につき最大15回まで行える
 
@@ -284,21 +329,39 @@ class Introduction extends React.Component {
             localStorage.setItem("user_05", JSON.stringify(limit))
         }
 
-        
+    
 
-        // 降順にソート
-        this.state.applauseListList.sort(
-            function(a,b){
-              return (a.count < b.count ? 1 : -1);
+
+
+        let clapList_li
+        if (JSON.parse(localStorage.getItem('postInfoList')) != null) {
+            for (let i = 0; i < JSON.parse(localStorage.getItem('postInfoList')).length; i++){
+
+                if (JSON.parse(localStorage.getItem('postInfoList'))[i].id == this.props.id) {
+
+                    // 降順にソート
+                    let sort = JSON.parse(localStorage.getItem("applauseListList_new"))
+                    sort[i] = JSON.parse(localStorage.getItem('applauseListList_new'))[i].sort(
+                                function(a,b){
+                                    return (a.count < b.count ? 1 : -1);
+                                }
+                            );
+                    localStorage.setItem("applauseListList_new", JSON.stringify(sort))
+
+                    clapList_li = JSON.parse(localStorage.getItem('applauseListList_new'))[i].map((applauseList, index) => {
+                        if(applauseList.count != 0){
+                            return (
+                                <li className="list-group-item" key={index}>{applauseList.name} : {applauseList.count}</li>
+                            )
+                        }
+                    })
+                }
             }
-        );
+        }
 
+        
+        console.log(JSON.parse(localStorage.getItem('applauseListList_new')))
 
-        const clapList_li = this.state.applauseListList.map((applauseList, index) => {
-            return (
-                <li className="list-group-item" key={index}>{applauseList.name} : {applauseList.count}</li>
-            )
-        })
 
 
         let clapList;
