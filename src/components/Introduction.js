@@ -317,6 +317,7 @@ class Introduction extends React.Component {
                     { name: "user_03", count: postInfo[i]["user_03_clap"] },
                     { name: "user_04", count: postInfo[i]["user_04_clap"] },
                     { name: "user_05", count: postInfo[i]["user_05_clap"] },
+                    // { id: postInfo[i]["id"] },
                 ]
 
                 if (JSON.parse(localStorage.getItem('applauseListList_new')) == null) {
@@ -333,6 +334,7 @@ class Introduction extends React.Component {
 
         console.log(JSON.parse(localStorage.getItem('applauseListList_new')))
         console.log(this.state.applauseListList)
+        console.log(JSON.parse(localStorage.getItem('postInfoList')))
 
 
 
@@ -399,11 +401,47 @@ class Introduction extends React.Component {
         );
 
 
-        const clapList_li = this.state.applauseListList.map((applauseList, index) => {
-            return (
-                <li className="list-group-item" key={index}>{applauseList.name} : {applauseList.count}</li>
-            )
-        })
+
+        let clapList_li
+        for (let i = 0; i < JSON.parse(localStorage.getItem('postInfoList')).length; i++){
+
+            if (JSON.parse(localStorage.getItem('postInfoList'))[i].id == this.props.id) {
+
+                // 降順にソート
+                let sort = JSON.parse(localStorage.getItem("applauseListList_new"))
+                sort[i] = JSON.parse(localStorage.getItem('applauseListList_new'))[i].sort(
+                            function(a,b){
+                                return (a.count < b.count ? 1 : -1);
+                            }
+                        );
+                localStorage.setItem("applauseListList_new", JSON.stringify(sort))
+
+                clapList_li = JSON.parse(localStorage.getItem('applauseListList_new'))[i].map((applauseList, index) => {
+                    if(applauseList.count != 0){
+                        return (
+                            <li className="list-group-item" key={index}>{applauseList.name} : {applauseList.count}</li>
+                        )
+                    }
+                })
+                
+                console.log(JSON.parse(localStorage.getItem('applauseListList_new'))[i])
+            }
+            
+        }
+
+
+
+
+
+
+
+
+
+        // const clapList_li = this.state.applauseListList.map((applauseList, index) => {
+        //     return (
+        //         <li className="list-group-item" key={index}>{applauseList.name} : {applauseList.count}</li>
+        //     )
+        // })
 
 
         let clapList;
