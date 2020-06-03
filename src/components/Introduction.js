@@ -116,6 +116,19 @@ class Introduction extends React.Component {
                     clap["clap"] -= 2;
                     localStorage.setItem("user_01", JSON.stringify(clap))
 
+
+                    for (let i = 0; i < JSON.parse(localStorage.getItem('postInfoList')).length; i++){
+
+                        if (JSON.parse(localStorage.getItem('postInfoList'))[i].id == this.props.id) {
+                            let clap = JSON.parse(localStorage.getItem('postInfoList'))
+                            clap[i]["user_01_clap"] += 1;
+                            localStorage.setItem("postInfoList", JSON.stringify(clap))
+                        }
+                        
+                    }
+
+
+
                     for (let i = 0; i < this.state.applauseListList.length; i++) {
                         if (this.state.applauseListList[i].name == this.props.user_01.name) {
                             this.setState({
@@ -130,11 +143,26 @@ class Introduction extends React.Component {
                         user_01_clap: this.state.user_01_clap + 1
                     })
                 }
+
                 if (this.props.userInfo_user_now.name == this.props.user_02.name) {
                     
                     let clap = JSON.parse(localStorage.getItem("user_02"))
                     clap["clap"] -= 2;
                     localStorage.setItem("user_02", JSON.stringify(clap))
+
+
+                    for (let i = 0; i < JSON.parse(localStorage.getItem('postInfoList')).length; i++){
+
+                        if (JSON.parse(localStorage.getItem('postInfoList'))[i].id == this.props.id) {
+                            let clap = JSON.parse(localStorage.getItem('postInfoList'))
+                            clap[i]["user_02_clap"] += 1;
+                            localStorage.setItem("postInfoList", JSON.stringify(clap))
+                        }
+                        
+                    }
+
+
+
 
                     for (let i = 0; i < this.state.applauseListList.length; i++) {
                         if (this.state.applauseListList[i].name == this.props.user_02.name) {
@@ -156,6 +184,20 @@ class Introduction extends React.Component {
                     clap["clap"] -= 2;
                     localStorage.setItem("user_03", JSON.stringify(clap))
 
+
+                    for (let i = 0; i < JSON.parse(localStorage.getItem('postInfoList')).length; i++){
+
+                        if (JSON.parse(localStorage.getItem('postInfoList'))[i].id == this.props.id) {
+                            let clap = JSON.parse(localStorage.getItem('postInfoList'))
+                            clap[i]["user_03_clap"] += 1;
+                            localStorage.setItem("postInfoList", JSON.stringify(clap))
+                        }
+                        
+                    }
+
+
+
+
                     for (let i = 0; i < this.state.applauseListList.length; i++) {
                         if (this.state.applauseListList[i].name == this.props.user_03.name) {
                             this.setState({
@@ -176,6 +218,21 @@ class Introduction extends React.Component {
                     clap["clap"] -= 2;
                     localStorage.setItem("user_04", JSON.stringify(clap))
 
+
+
+                    for (let i = 0; i < JSON.parse(localStorage.getItem('postInfoList')).length; i++){
+
+                        if (JSON.parse(localStorage.getItem('postInfoList'))[i].id == this.props.id) {
+                            let clap = JSON.parse(localStorage.getItem('postInfoList'))
+                            clap[i]["user_04_clap"] += 1;
+                            localStorage.setItem("postInfoList", JSON.stringify(clap))
+                        }
+                        
+                    }
+
+
+
+
                     for (let i = 0; i < this.state.applauseListList.length; i++) {
                         if (this.state.applauseListList[i].name == this.props.user_04.name) {
                             this.setState({
@@ -195,6 +252,21 @@ class Introduction extends React.Component {
                     let clap = JSON.parse(localStorage.getItem("user_05"))
                     clap["clap"] -= 2;
                     localStorage.setItem("user_05", JSON.stringify(clap))
+
+
+
+                    for (let i = 0; i < JSON.parse(localStorage.getItem('postInfoList')).length; i++){
+
+                        if (JSON.parse(localStorage.getItem('postInfoList'))[i].id == this.props.id) {
+                            let clap = JSON.parse(localStorage.getItem('postInfoList'))
+                            clap[i]["user_05_clap"] += 1;
+                            localStorage.setItem("postInfoList", JSON.stringify(clap))
+                        }
+                        
+                    }
+
+
+
 
                     for (let i = 0; i < this.state.applauseListList.length; i++) {
                         if (this.state.applauseListList[i].name == this.props.user_05.name) {
@@ -230,6 +302,8 @@ class Introduction extends React.Component {
     }
 
     render() {
+
+        console.log(JSON.parse(localStorage.getItem('postInfoList')))
 
         // 1ユーザは一つの投稿につき最大15回まで行える
 
