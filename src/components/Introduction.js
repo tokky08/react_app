@@ -11,6 +11,7 @@ class Introduction extends React.Component {
             postInfoList: JSON.parse(localStorage.getItem('postInfoList')),
             hovered: false,
             applauseListList: [],
+            applauseListList_new: JSON.parse(localStorage.getItem('applauseListList_new')) || [{},{},{},{},{}],
             user_01_clap: 1,
             user_02_clap: 1,
             user_03_clap: 1,
@@ -303,7 +304,37 @@ class Introduction extends React.Component {
 
     render() {
 
-        console.log(JSON.parse(localStorage.getItem('postInfoList')))
+
+        if (JSON.parse(localStorage.getItem('postInfoList')) != null) {
+
+            for (let i = 0; i < JSON.parse(localStorage.getItem('postInfoList')).length; i++) {
+
+                let postInfo = JSON.parse(localStorage.getItem('postInfoList'))
+
+                let postInfoJson = [
+                    { name: "user_01", count: postInfo[i]["user_01_clap"] },
+                    { name: "user_02", count: postInfo[i]["user_02_clap"] },
+                    { name: "user_03", count: postInfo[i]["user_03_clap"] },
+                    { name: "user_04", count: postInfo[i]["user_04_clap"] },
+                    { name: "user_05", count: postInfo[i]["user_05_clap"] },
+                ]
+
+                if (JSON.parse(localStorage.getItem('applauseListList_new')) == null) {
+                    localStorage.setItem("applauseListList_new", JSON.stringify([]))
+                }
+
+
+                let data = JSON.parse(localStorage.getItem('applauseListList_new'))  
+                data[i] = postInfoJson
+                localStorage.setItem("applauseListList_new", JSON.stringify(data))
+            
+            }
+        }
+
+        console.log(JSON.parse(localStorage.getItem('applauseListList_new')))
+        console.log(this.state.applauseListList)
+
+
 
         // 1ユーザは一つの投稿につき最大15回まで行える
 
