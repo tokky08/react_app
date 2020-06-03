@@ -14,10 +14,35 @@ class Introduction extends React.Component {
     }
 
     handleClick() {
-     
-        let user = JSON.parse(localStorage.getItem(this.props.userInfo_user_now.name))
 
-        if (!user.limit) {
+        let user_limit = 0
+        if (JSON.parse(localStorage.getItem('postInfoList')) != null) {
+            for (let i = 0; i < JSON.parse(localStorage.getItem('postInfoList')).length; i++){
+
+                if (JSON.parse(localStorage.getItem('postInfoList'))[i].id == this.props.id) {
+
+                    
+                    let limit = JSON.parse(localStorage.getItem("applauseListList_new"))[i]
+
+                    for (let j = 0; j < limit.length; j++){
+                        if (limit[j].name == this.props.userInfo_user_now.name) {
+
+                            user_limit = limit[j].count
+                    
+                        }
+                    }
+                    
+                }
+                
+            }
+        }
+
+     
+        // let user = JSON.parse(localStorage.getItem(this.props.userInfo_user_now.name))
+
+
+
+        if (user_limit < 15) {
 
             // 拍手した人が紹介した人・紹介された人でなければ
             if (!(this.props.userInfo_user_now.name == this.state.userInfo_user.name || this.props.userInfo_user_now.name == this.state.post_user.name)) {
@@ -247,11 +272,7 @@ class Introduction extends React.Component {
                 localStorage.setItem("applauseListList_new", JSON.stringify(data))
             
             }
-        }
-
-        console.log(JSON.parse(localStorage.getItem('applauseListList_new')))
-        console.log(this.state.applauseListList)
-        console.log(JSON.parse(localStorage.getItem('postInfoList')))
+        }        
 
 
 
@@ -334,13 +355,12 @@ class Introduction extends React.Component {
                             )
                         }
                     })
-
-                    console.log(JSON.parse(localStorage.getItem('applauseListList_new'))[i])
                 }
-                
             }
         }
+
         
+        console.log(JSON.parse(localStorage.getItem('applauseListList_new')))
 
 
 
